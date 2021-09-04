@@ -1,5 +1,5 @@
 import './App.css';
-import requests from './Requests';
+import requests from './requests';
 import Row from './Row';
 
 function App() {
