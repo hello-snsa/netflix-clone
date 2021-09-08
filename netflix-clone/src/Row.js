@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import axios from './axios';
+import './Row.css';
 
-const baseUrls = "https://image.tmdb.org/t/p/original/";
-export default function Row({ title, fetchUrl }) {
+const base_url = "https://image.tmdb.org/t/p/original/";
+export default function Row({ title, fetchUrl, isLargeRow }) {
 
     const [movies, setMovies] = React.useState([]);
 
@@ -27,13 +28,24 @@ export default function Row({ title, fetchUrl }) {
             <div className="row_posters">
                 {
                     movies.map((movie) => (
-                        <img className="row_poster" src={`${baseUrls}${movie.poster_path}`} alt={movie.name} />
 
+                        // <img key={movie.id} className={`row_poster${isLargeRow && "row_posterLarge"}`}
+                        //     src={`${base_url} ${isLargeRow ? movie.poster_path : movie.backdrop_path}`} alt={movie.name} />
+
+
+                        // <img key={movie.id} className="row_poster" src={`${base_url}${movie.poster_path}`} alt={movie.name} />
+
+                        <img
+                            key={movie.id}
+                            className={`${isLargeRow ? "row_posterLarge" : "row_poster"}`}
+                            src={`${base_url}${isLargeRow ? movie.poster_path : movie.backdrop_path
+                                }`}
+                            alt={movie.name}
+                        />
 
 
                     ))
                 }
-
             </div>
 
         </div>
